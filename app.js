@@ -1,9 +1,9 @@
 require('dotenv').config()
 const express = require('express')
 // const connect = require('./schemas')
-
+const path = require('path')
 const passportConfig = require('./passport')
-
+const cors = require('cors');
 const PORT = 8080
 // const fs = require('fs')
 // const https = require('https')
@@ -44,12 +44,21 @@ const requestMiddleware = (req, res, next) => {
 
 //프론트에서 오는 데이터들을 body에 넣어주는 역할
 app.use(express.json())
+app.use(cors({ // CORS 모듈 실행
+    origin : "http://localhost:3000",  
+   // origin : "*", // 출처 허용 옵션 (전부 허용)
+   credential: 'true' // 사용자 인증이 필요한 리소스(쿠키 ..등) 접근
+}));
+
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'))
+
 app.use(requestMiddleware)
 
 app.use('/oauth', express.urlencoded({ extended: false }), usersRouter)
 
 app.get('/', (req, res) => {
-    res.send('hello')
+    res.status(200).render('index');
 })
 
 
