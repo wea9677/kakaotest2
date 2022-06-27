@@ -1,4 +1,5 @@
 require('dotenv').config()
+const mongoose = require('mongoose')
 const express = require('express')
 // const connect = require('./schemas')
 const path = require('path')
@@ -17,6 +18,16 @@ const PORT = 8080
 //     ca: ca,
 // }
 // const app_low = express()
+
+
+mongoose.connect("mongodb://0.0.0.0/kakaotest", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error'));
+
 const app = express()
 
 // const httpsPort = process.env.HTTPS_PORT
