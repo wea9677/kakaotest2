@@ -12,6 +12,7 @@ const user_validation = require('../vaildation/user.val')
 router.get('/kakao', passport.authenticate('kakao'))
 
 const kakaoCallback = (req, res, next) => {
+    console.log(kakaoCallback);
     passport.authenticate(
         'kakao',
         { failureRedirect: '/' },
@@ -33,6 +34,6 @@ const kakaoCallback = (req, res, next) => {
 }
 
 router.get('/callback/kakao', kakaoCallback)
-
+console.log(kakaoCallback);
 
 module.exports = router
