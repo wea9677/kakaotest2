@@ -37,5 +37,15 @@ router.get('/kakao/callback', kakaoCallback)
 
 
 
+router.get("/user/login/me", authMiddleware, async (req, res) => { 
+
+    
+    const{ user } =  res.locals;
+    
+    
+    res.send({ token: user.token, userId: user.userId, nickName : user.nickName, userImg:user.userImg });
+    
+   });
+
 
 module.exports = router
