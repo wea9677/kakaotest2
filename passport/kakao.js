@@ -30,6 +30,8 @@ module.exports = () => {
                         const newUser = await User.create({
                             userId: profile.id,
                             provider: 'kakao',
+                            nickName : profile._json.properties.nickname,
+                            userImg : profile._json.properties.profile_image
                         });
                         done(null, newUser); // 회원가입하고 로그인 인증 완료
                     }
