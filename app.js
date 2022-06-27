@@ -20,7 +20,7 @@ const PORT = 8080
 // const app_low = express()
 
 
-mongoose.connect("mongodb://0.0.0.0/kakaotest", {
+mongoose.connect("mongodb+srv://wea9677:tmxkdlfl@cluster0.xmzro.mongodb.net/kakaoTEST", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
