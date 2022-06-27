@@ -18,13 +18,12 @@ const kakaoCallback = (req, res, next) => {
         (err, user, info) => {
             if (err) return next(err)
             console.log('콜백~~~')
-            const userInfo = user;
             const { userId, nickName, userImg } = user;
             const token = jwt.sign({ userId }, process.env.MY_KEY)
 
             result = {
                 token,
-                userInfo,
+                userId,
                 nickName,
                 userImg
             }
