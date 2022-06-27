@@ -32,7 +32,7 @@ const kakaoCallback = (req, res, next) => {
     )(req, res, next)
 }
 
-router.get('/callback/kakao', kakaoCallback)
+router.get('/kakao/callback', kakaoCallback)
 
 
 
