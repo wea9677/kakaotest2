@@ -57,7 +57,7 @@ const googleCallback = (req, res, next) => {
                 token,
                 userId,
                 nickName,
-                userImg
+                // userImg
             }
             console.log('구글 콜백 함수 결과', result)
             res.send({ user: result })
