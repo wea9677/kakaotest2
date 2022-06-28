@@ -50,7 +50,7 @@ const googleCallback = (req, res, next) => {
         (err, user, info) => {
             if (err) return next(err)
             console.log('콜백~~~')
-            const { userId } = user
+            const { userId, nickName } = user
             const token = jwt.sign({ userId }, process.env.MY_KEY)
 
             result = {
