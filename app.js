@@ -72,6 +72,10 @@ app.get('/', (req, res) => {
     res.status(200).render('index');
 })
 
+app.use('/test', (req, res) => {
+    res.send('test 페이지입니다.')
+});
+
 
 
 app.listen(PORT, function(){
