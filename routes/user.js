@@ -8,7 +8,7 @@ const authMiddleware = require('../middlewares/auth-middleware')
 
 
 
-//카카오
+//카카오 로그인
 router.get('/kakao', passport.authenticate('kakao'))
 
 const kakaoCallback = (req, res, next) => {
@@ -35,7 +35,7 @@ const kakaoCallback = (req, res, next) => {
 
 router.get('/kakao/callback', kakaoCallback)
 
-// 구글
+// 구글 로그인
 
 router.get('/google', passport.authenticate('google', {scope: ['profile'],
         // access_Type: 'offline',
@@ -49,7 +49,7 @@ const googleCallback = (req, res, next) => {
         { failureRedirect: '/' },
         (err, user, info) => {
             if (err) return next(err)
-            console.log('콜백~~~')
+            console.log('콜백')
             const { userId, nickName, userImg } = user
             const token = jwt.sign({ userId }, process.env.MY_KEY)
 

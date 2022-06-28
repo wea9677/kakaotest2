@@ -31,7 +31,7 @@ module.exports = () => {
                             userId: profile.id,
                             provider: 'kakao',
                             nickName : profile._json.properties.nickname,
-                            userImg : profile._json.properties.profile_image
+                            userImg : profile._json.properties.thumbnail_image
                         });
                         done(null, newUser); // 회원가입하고 로그인 인증 완료
                     }
