@@ -50,14 +50,14 @@ const googleCallback = (req, res, next) => {
         (err, user, info) => {
             if (err) return next(err)
             console.log('콜백~~~')
-            const { userId, nickName } = user
+            const { userId, nickName, userImg } = user
             const token = jwt.sign({ userId }, process.env.MY_KEY)
 
             result = {
                 token,
                 userId,
-                nickName
-                // userImg
+                nickName,
+                userImg
             }
             console.log('구글 콜백 함수 결과', result)
             res.send({ user: result })
