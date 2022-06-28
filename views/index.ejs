@@ -2,35 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-signin-client_id" content="715387401721-ncqt2bukuavi3a9ebuft0ge23mu4989t.apps.googleusercontent.com">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Document</title>
 </head>
 <body>
   <h3>Node Passport Social Login</h3>
     
   <a href="/oauth/kakao">Login with Kakao</a>
-    <div>
-        <div class="row">
-          <div class="col-md-offset-1 col-md-5">
-            <a href="/auth/facebook">
-              <img src="/public/auth/assets/img/icons/facebook.png" />
-            </a>
-            <a href="/auth/twitter">
-              <img src="/public/auth/assets/img/icons/twitter.png" />
-            </a>
-      
-            <!-- kakao login -->
-            <!-- <a href="/auth/kakao">
-              <img
-                src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png"
-              />
-            </a> -->
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div ui-view></div>
-        </div>
-      </div>
+
+  <div class="g-signin2" data-onsuccess="onSignIn"></div>
+  <script>
+    function onSignIn(googleUser) {
+      // Useful data for your client-side scripts:
+      var profile = googleUser.getBasicProfile();
+      console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+      console.log('Full Name: ' + profile.getName());
+      console.log('Given Name: ' + profile.getGivenName());
+      console.log('Family Name: ' + profile.getFamilyName());
+      console.log("Image URL: " + profile.getImageUrl());
+      console.log("Email: " + profile.getEmail());
+
+      // The ID token you need to pass to your backend:
+      var id_token = googleUser.getAuthResponse().id_token;
+      console.log("ID Token: " + id_token);
+    }
+  </script>
+   
 </body>
 </html>
