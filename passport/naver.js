@@ -14,10 +14,11 @@ module.exports = () => {
          },
          async (accessToken, refreshToken, profile, done) => {
             console.log('naver profile : ', profile);
+            console.log(accessToken);
             try {
                const exUser = await User.findOne({
                   // 네이버 플랫폼에서 로그인 했고 & snsId필드에 네이버 아이디가 일치할경우
-                  where: { userId: profile.id, provider: 'naver' },
+                  userId: profile.id,
                });
                // 이미 가입된 네이버 프로필이면 성공
                if (exUser) {
