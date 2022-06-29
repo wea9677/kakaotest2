@@ -1,10 +1,11 @@
 require('dotenv').config()
-const express = require('express')
-const User = require('../schemas/user')
+const express = require('express');
+const User = require('../schemas/user');
 const router = express.Router()
-const passport = require('passport')
-const jwt = require('jsonwebtoken')
-const authMiddleware = require('../middlewares/auth-middleware')
+const passport = require('passport');
+const jwt = require('jsonwebtoken');
+const authMiddleware = require('../middlewares/auth-middleware');
+const userController = require('../controller/userController');
 
 
 
@@ -70,30 +71,11 @@ router.get('/google/callback', googleCallback)
 // 네이버 로그인
 
 //* 네이버로 로그인하기 라우터 
-router.get('/naver', passport.authenticate('naver', { authType: 'reprompt' }));
 
 
-//? 위에서 네이버 서버 로그인이 되면, 네이버 redirect url 설정에 따라 이쪽 라우터로 오게 된다.
-router.get('/naver/callback',
-    //? 그리고 passport 로그인 전략에 의해 naverStrategy로 가서 카카오계정 정보와 DB를 비교해서 회원가입시키거나 로그인 처리하게 한다.
-    passport.authenticate('naver', 
-    { failureRedirect: '/' }),
-    (req, res) => {
-        if (err) return next(err)
-        console.log('콜백')
-        const { userId, nickName, userImg } = user
-        const token = jwt.sign({ userId }, process.env.MY_KEY)
+router.get('/naver', passport.authenticate('naver', { authType: 'reprompt' }))
+router.get('/naver/callback', userController.naverCallback)
 
-        result = {
-            token,
-            userId,
-            nickName,
-            userImg
-        }
-        console.log('네이버 콜백 함수 결과', result)
-        res.send({ user: result })
-    },
- );
 
 
 //사용자인증
