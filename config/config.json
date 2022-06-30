@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "1q2w3e4r!",
-    "database": "jejudo",
+    "database": "jeju",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
