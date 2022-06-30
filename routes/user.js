@@ -1,6 +1,6 @@
 require('dotenv').config()
 const express = require('express');
-const User = require('../schemas/user');
+const { User } = require('../models/index');
 const router = express.Router()
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
@@ -18,7 +18,7 @@ const kakaoCallback = (req, res, next) => {
         { failureRedirect: '/' },
         (err, user, info) => {
             if (err) return next(err)
-            console.log('콜백~~~')
+            console.log('콜백')
             const { userId, nickName, userImg } = user;
             const token = jwt.sign({ userId }, process.env.MY_KEY)
 
@@ -38,12 +38,9 @@ router.get('/kakao/callback', kakaoCallback)
 
 // 구글 로그인
 
-router.get('/google', passport.authenticate('google', {scope: ['profile'],
-        // access_Type: 'offline',
+router.get('/google', passport.authenticate('google', {scope: ['profile'],})) 
+ // access_Type: 'offline',
         // approval_Prompt: 'force',
-    })
-) 
-
 const googleCallback = (req, res, next) => {
     passport.authenticate(
         'google',

@@ -3,7 +3,7 @@ require('dotenv').config();
 const { access } = require('fs');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const User = require('../schemas/user');
+const { User } = require('../models/index');
 
 module.exports = () => {
     passport.use(
@@ -24,7 +24,7 @@ module.exports = () => {
                 try {
                     const exUser = await User.findOne({
                         // 구글 플랫폼에서 로그인 했고 & snsId필드에 구글 아이디가 일치할경우
-                        userId: profile.id,
+                        where : {userId: profile.id,},
                     });
                     // 이미 가입된 구글 프로필이면 성공
                     if (exUser) {

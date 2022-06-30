@@ -1,7 +1,7 @@
 const passport = require('passport');
 const { Strategy: NaverStrategy, Profile: NaverProfile } = require('passport-naver-v2');
  
-const User = require('../schemas/user');
+const { User } = require('../models/index');
 require('dotenv').config()
  
 module.exports = () => {
@@ -14,11 +14,10 @@ module.exports = () => {
          },
          async (accessToken, refreshToken, profile, done) => {
             console.log('naver profile : ', profile);
-            console.log(accessToken);
             try {
                const exUser = await User.findOne({
                   // 네이버 플랫폼에서 로그인 했고 & snsId필드에 네이버 아이디가 일치할경우
-                  userId: profile.id,
+                  where : {userId: profile.id}, // where { userId: profile.id, provider: 'naver',}
                });
                // 이미 가입된 네이버 프로필이면 성공
                if (exUser) {

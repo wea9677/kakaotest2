@@ -20,13 +20,13 @@ const PORT = 8080
 // const app_low = express()
 
 
-mongoose.connect("mongodb+srv://wea9677:tmxkdlfl@cluster0.xmzro.mongodb.net/kakaoTEST", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
+// mongoose.connect("mongodb+srv://wea9677:tmxkdlfl@cluster0.xmzro.mongodb.net/kakaoTEST", {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+// });
 
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error'));
+// const db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'connection error'));
 
 const app = express()
 
