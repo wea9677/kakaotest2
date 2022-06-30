@@ -64,7 +64,7 @@ app.use(cors({ // CORS 모듈 실행
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'))
 
-app.use(requestMiddleware)
+app.use(requestMiddleware) 
 
 app.use('/oauth', express.urlencoded({ extended: false }), usersRouter)
 
