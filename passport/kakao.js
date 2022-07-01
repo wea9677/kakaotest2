@@ -1,8 +1,8 @@
 require('dotenv').config();
 const passport = require('passport');
 const KakaoStrategy = require('passport-kakao').Strategy;
-const { users } = require('../models/index')
-// const { users, sequelize, Sequelize } = require("../models");
+//const { users } = require('../models/index')
+const { users, sequelize, Sequelize } = require("./models");
 
 module.exports = () => {
     passport.use(
@@ -21,29 +21,29 @@ module.exports = () => {
                 //-------------------------------------------------------------------------------------------
                 try {
                     console.log(profile.id, "123" )
-                    // const exUser = await User.findOne({
-                    //     // 카카오 플랫폼에서 로그인 했고 & snsId필드에 카카오 아이디가 일치할경우
-                    //     where: {userId: profile.id},
+                    const exUser = await users.findOne({
+                        // 카카오 플랫폼에서 로그인 했고 & snsId필드에 카카오 아이디가 일치할경우
+                        where: {userId: profile.id},
                         
-                    // });
+                    });
                     console.log("234")
                     // 이미 가입된 카카오 프로필이면 성공
                     console.log("지나가나요")
-                  //  if (exUser) {
-                     //   done(null, exUser); // 로그인 인증 완료
-                   // } else {
-                        // // 가입되지 않는 유저면 회원가입 시키고 로그인을 시킨다
-                        // const newUser = await User.create({
-                        //     userId: profile.id,
-                        //     provider: 'kakao',
-                        //     nickName : profile._json.properties.nickname,
-                        //     userImg : profile._json.properties.thumbnail_image
-                        // });
-                        // done(null, newUser); // 회원가입하고 로그인 인증 완료
-                        const userinfo = await users.findAll({})
-                        console.log( userinfo ,"가입완료")
+                   if (exUser) {
+                       done(null, exUser); // 로그인 인증 완료
+                   } else {
+                        // 가입되지 않는 유저면 회원가입 시키고 로그인을 시킨다
+                        const newUser = await User.create({
+                            userId: profile.id,
+                            provider: 'kakao',
+                            nickName : profile._json.properties.nickname,
+                            userImg : profile._json.properties.thumbnail_image
+                        });
+                        done(null, newUser); // 회원가입하고 로그인 인증 완료
+                      
+                        console.log("가입완료")
                     }
-                //}
+                }
                  catch (error) {
                     console.error(error);
                     done(error);
