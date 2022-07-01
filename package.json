@@ -23,8 +23,7 @@
     "passport-google": "^0.3.0",
     "passport-google-oauth20": "^2.0.0",
     "passport-kakao": "^1.0.1",
-    "passport-naver-v2": "^2.0.8",
-    "sequelize": "^6.21.2"
+    "passport-naver-v2": "^2.0.8"
   },
   "devDependencies": {
     "sequelize-cli": "^6.4.1"
