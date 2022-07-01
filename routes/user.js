@@ -6,7 +6,7 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const authMiddleware = require('../middlewares/auth-middleware');
 const userController = require('../controller/userController');
-
+const { users, sequelize, Sequelize } = require("../models");
 
 
 //카카오 로그인
@@ -18,6 +18,7 @@ const kakaoCallback = (req, res, next) => {
         { failureRedirect: '/' },
         (err, user, info) => {
             if (err) return next(err)
+            //----------------------------------------------------------------
             console.log('콜백')
             const { userId, nickName, userImg } = user;
             const token = jwt.sign({ userId }, process.env.MY_KEY)
@@ -72,6 +73,17 @@ router.get('/google/callback', googleCallback)
 
 router.get('/naver', passport.authenticate('naver', { authType: 'reprompt' }))
 router.get('/naver/callback', userController.naverCallback)
+
+
+// 테스트용 라우터
+router.post('/testSignup', async (req, res) => {
+    const { nickname, password } = req.body
+    await users.create({ nickname, profileUrl: 'aaa', social: password })
+    res.status(200).send({
+        success: true,
+        message: '테스트 계정 완료',
+    })
+})
 
 
 
