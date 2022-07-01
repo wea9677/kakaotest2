@@ -1,7 +1,7 @@
 require('dotenv').config();
 const passport = require('passport');
 const KakaoStrategy = require('passport-kakao').Strategy;
-const { User } = require('../models/index');
+const { User, sequelize, Sequelize } = require("../models");
 
 module.exports = () => {
     passport.use(
@@ -19,7 +19,7 @@ module.exports = () => {
                 console.log('카카오 엑세스, 파일', accessToken, profile);
                 //-------------------------------------------------------------------------------------------
                 try {
-                    console.log("123")
+                    console.log(profile.id, "123" )
                     const exUser = await User.findOne({
                         // 카카오 플랫폼에서 로그인 했고 & snsId필드에 카카오 아이디가 일치할경우
                         where: {userId: profile.id},

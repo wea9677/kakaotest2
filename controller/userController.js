@@ -1,6 +1,6 @@
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
-const { User } = require('../models/user');
+const { User, sequelize, Sequelize } = require("../models");
 require('dotenv').config()
 
 
