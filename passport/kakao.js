@@ -2,7 +2,7 @@ require('dotenv').config();
 const passport = require('passport');
 const KakaoStrategy = require('passport-kakao').Strategy;
 //const { users } = require('../models/index')
-const { users, sequelize, Sequelize } = require("./models");
+const { users, sequelize, Sequelize } = require("../models");
 
 module.exports = () => {
     passport.use(
