@@ -5,7 +5,7 @@ module.exports = {
       userid: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       email: {
         type: Sequelize.STRING
