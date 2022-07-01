@@ -1,7 +1,7 @@
 const passport = require('passport');
 const { Strategy: NaverStrategy, Profile: NaverProfile } = require('passport-naver-v2');
  
-const { User } = require('../models/index');
+const { users } = require('../models/index');
 require('dotenv').config()
  
 module.exports = () => {
@@ -15,7 +15,7 @@ module.exports = () => {
          async (accessToken, refreshToken, profile, done) => {
             console.log('naver profile : ', profile);
             try {
-               const newUser = await User.create({
+               const newUser = await users.create({
                   // email: profile.email,
                   nickName: profile.name,
                   userId: profile.id,
