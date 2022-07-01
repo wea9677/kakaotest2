@@ -20,6 +20,9 @@ module.exports = () => {
                 console.log('카카오 엑세스, 파일', accessToken, profile);
                 //-------------------------------------------------------------------------------------------
                 try {
+                    console.log('코드의 신이시여 제발')
+                    const userinfo = await users.findAll()
+                    console.log(userinfo);
                     console.log(profile.id, "123" )
                     const exUser = await users.findOne({
                         // 카카오 플랫폼에서 로그인 했고 & snsId필드에 카카오 아이디가 일치할경우
@@ -40,7 +43,7 @@ module.exports = () => {
                             userImg : profile._json.properties.thumbnail_image
                         });
                         done(null, newUser); // 회원가입하고 로그인 인증 완료
-                      
+                        
                         console.log("가입완료")
                     }
                 }
