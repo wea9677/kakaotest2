@@ -10,6 +10,12 @@ module.exports = {
      
       nickname: {
         type: Sequelize.STRING
+      },
+      userImage : {
+        type: Sequelize.STRING
+      },
+      email: {
+        type: Sequelize.STRING
       }
     
     });
