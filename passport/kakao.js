@@ -23,6 +23,7 @@ module.exports = () => {
                         where: {userId: profile.id},
                     });
                     // 이미 가입된 카카오 프로필이면 성공
+                    console.log("지나가나요")
                     if (exUser) {
                         done(null, exUser); // 로그인 인증 완료
                     } else {
@@ -34,6 +35,7 @@ module.exports = () => {
                             userImg : profile._json.properties.thumbnail_image
                         });
                         done(null, newUser); // 회원가입하고 로그인 인증 완료
+                        console.log("가입완료")
                     }
                 } catch (error) {
                     console.error(error);
