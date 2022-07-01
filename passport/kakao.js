@@ -1,7 +1,7 @@
 require('dotenv').config();
 const passport = require('passport');
 const KakaoStrategy = require('passport-kakao').Strategy;
-const { Users, sequelize, Sequelize } = require("../models");
+const { users, sequelize, Sequelize } = require("../models");
 
 module.exports = () => {
     passport.use(
@@ -39,7 +39,7 @@ module.exports = () => {
                         //     userImg : profile._json.properties.thumbnail_image
                         // });
                         // done(null, newUser); // 회원가입하고 로그인 인증 완료
-                        const userinfo = await Users.findAll({})
+                        const userinfo = await users.findAll({})
                         console.log( userinfo ,"가입완료")
                     }
                 //}
