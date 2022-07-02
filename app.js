@@ -7,7 +7,7 @@ const mysql = require('mysql')
 const morgan = require('morgan');
 const passportConfig = require('./passport')
 const cors = require('cors');
-const PORT = 3000
+const PORT = 8080
 // const fs = require('fs')
 // const https = require('https')
 
