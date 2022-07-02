@@ -20,14 +20,14 @@ const kakaoCallback = (req, res, next) => {
             if (err) return next(err)
             //----------------------------------------------------------------
             console.log('콜백')
-            const { snsId, nickname, userImg } = user;
+            const { snsId, nickname, userImage } = user;
             const token = jwt.sign({ snsId }, process.env.MY_KEY)
 
             result = {
                 token,
                 snsId,
                 nickname,
-                userImg
+                userImage
             }
             console.log('카카오 콜백 함수 결과', result)
             res.send({ user: result })
