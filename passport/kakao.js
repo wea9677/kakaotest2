@@ -2,7 +2,8 @@ require('dotenv').config();
 const passport = require('passport');
 const KakaoStrategy = require('passport-kakao').Strategy;
 //const { users } = require('../models/index')
-const { users, sequelize, Sequelize } = require("../models");
+const { Users, sequelize, Sequelize } = require("../models");
+
 
 module.exports = () => {
     passport.use(
@@ -20,13 +21,12 @@ module.exports = () => {
                 console.log('카카오 엑세스, 파일', accessToken, profile);
                 //-------------------------------------------------------------------------------------------
                 try {
-                    console.log('코드의 신이시여 제발')
-                    const userinfo = await users.findAll()
+                    const userinfo = await Users.findAll()
                     console.log(userinfo);
                     console.log(profile.id, "123" )
-                    const exUser = await users.findOne({
+                    const exUser = await Users.findOne({
                         // 카카오 플랫폼에서 로그인 했고 & snsId필드에 카카오 아이디가 일치할경우
-                        where: {userId: profile.id},
+                        where: {snsId: profile.id},
                         
                     });
                     console.log("234")
@@ -36,11 +36,11 @@ module.exports = () => {
                        done(null, exUser); // 로그인 인증 완료
                    } else {
                         // 가입되지 않는 유저면 회원가입 시키고 로그인을 시킨다
-                        const newUser = await User.create({
-                            userId: profile.id,
+                        const newUser = await Users.create({
+                            snsId: profile.id,
                             provider: 'kakao',
-                            nickName : profile._json.properties.nickname,
-                            userImg : profile._json.properties.thumbnail_image
+                            nickname : profile._json.properties.nickname,
+                            userImage : profile._json.properties.thumbnail_image
                         });
                         done(null, newUser); // 회원가입하고 로그인 인증 완료
                         

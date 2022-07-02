@@ -1,7 +1,9 @@
 'use strict';
-const {Model} = require('sequelize');
+const {
+  Model
+} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class users extends Model {
+  class Users extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,60 +13,19 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  users.init({
-    userId: {
+  Users.init({
+    userId : {
       allowNull: false,
+      autoIncrement: true,
       primaryKey: true,
-      type: DataTypes.STRING
+      type: DataTypes.INTEGER
     },
-    email: DataTypes.STRING,
+    snsId: DataTypes.STRING,
     nickname: DataTypes.STRING,
     userImage: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'users',
+    modelName: 'Users',
   });
-  return users;
+  return Users;
 };
-
-// const Sequelize = require('sequelize')
-// const { UUIDV4 } = require('sequelize')
-// module.exports = function (sequelize, DataTypes) {
-//     return sequelize.define(
-//         'users',
-//         {
-//             userId: {
-//                 type: DataTypes.STRING(150),
-//                 defaultValue: UUIDV4,
-//                 allowNull: false,
-//                 primaryKey: true,
-//             },
-//             nickname: {
-//                 type: DataTypes.STRING(150),
-//                 allowNull: false,
-//             },
-//             userImage: {
-//               type: DataTypes.STRING(150),
-//               allowNull: false,
-//           },
-//             email : {
-//               type: DataTypes.STRING(150),
-//               allowNull: false,
-//             }
-            
-//         },
-//         {
-//             sequelize,
-//             tableName: 'Users',
-//             timestamps: false,
-//             indexes: [
-//                 {
-//                     name: 'PRIMARY',
-//                     unique: true,
-//                     using: 'BTREE',
-//                     fields: [{ name: 'userId' }],
-//                 },
-//             ],
-//         }
-//     )
-// }

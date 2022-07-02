@@ -30,9 +30,7 @@ module.exports = (req, res, next) => {
         const { userId } = jwt.verify(tokenValue, process.env.MY_KEY);
         //검증 성공시 locals에 인증 정보 넣어주기//
         console.log('userId',userId);
-        User.findOne({ userId }) //mongodb면 findOne을 사용 exec() 추가해야함
-            .exec()
-            .then((user) => {
+        User.findByPk({ userId }).then((user) => {
                 res.locals.user = user;
                 next();
             });

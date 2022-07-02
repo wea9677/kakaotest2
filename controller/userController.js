@@ -12,14 +12,14 @@ const naverCallback = (req, res, next) => {
         (err, user, info) => {
             if (err) return next(err)
             console.log('콜백')
-            const { userId, nickName, userImg } = user
-            const token = jwt.sign({ userId }, process.env.MY_KEY)
+            const { snsId, nickname, userImage } = user
+            const token = jwt.sign({ snsId }, process.env.MY_KEY)
 
             result = {
                 token,
-                userId,
-                nickName,
-                userImg
+                snsId,
+                nickname,
+                userImage
             }
             console.log('네이버 콜백 함수 결과', result)
             res.send({ user: result })
