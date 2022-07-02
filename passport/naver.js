@@ -32,6 +32,7 @@ module.exports = () => {
                      provider: 'naver',
                   });
                   done(null, newUser);
+                  console.log('가입완료')
               }
             } catch (error) {
                console.error(error);

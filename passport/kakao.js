@@ -21,21 +21,20 @@ module.exports = () => {
                 console.log('카카오 엑세스, 파일', accessToken, profile);
                 //-------------------------------------------------------------------------------------------
                 try {
-                    const userinfo = await Users.findAll()
-                    console.log(userinfo);
-                    console.log(profile.id, "123" )
+                    console.log(profile.id, "1" )
                     const exUser = await Users.findOne({
                         // 카카오 플랫폼에서 로그인 했고 & snsId필드에 카카오 아이디가 일치할경우
                         where: {snsId: profile.id},
                         
                     });
-                    console.log("234")
+                    console.log("2")
                     // 이미 가입된 카카오 프로필이면 성공
-                    console.log("지나가나요")
+                    console.log("3")
                    if (exUser) {
                        done(null, exUser); // 로그인 인증 완료
                    } else {
                         // 가입되지 않는 유저면 회원가입 시키고 로그인을 시킨다
+                        console.log("4 유저 정보 저장")
                         const newUser = await Users.create({
                             snsId: profile.id,
                             provider: 'kakao',
