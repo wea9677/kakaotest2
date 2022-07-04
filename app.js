@@ -7,7 +7,6 @@ const mysql = require('mysql')
 const morgan = require('morgan');
 const passportConfig = require('./passport')
 const cors = require('cors');
-const db = require('./config/db');
 const PORT = 8080
 // const fs = require('fs')
 // const https = require('https')
@@ -32,6 +31,18 @@ const PORT = 8080
 // db.on('error', console.error.bind(console, 'connection error'));
 
 const app = express()
+
+
+// MySQL
+const db = require("./models");
+db.sequelize
+  .sync()
+  .then(() => {
+    console.log("MySQL DB 연결 성공");
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 
 // const httpsPort = process.env.HTTPS_PORT
 
