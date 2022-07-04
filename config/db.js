@@ -1,7 +1,7 @@
 const sequelize = require("sequelize")
 
 const db = new sequelize('jejudo', 'root', '1q2w3e4r!', {
-        host : "13.125.112.232",
+        host : "localhost",
         port : 3306,
         dialect: "mysql"
 });
