@@ -2,7 +2,7 @@ require('dotenv').config();
 const passport = require('passport');
 const KakaoStrategy = require('passport-kakao').Strategy;
 //const { users } = require('../models/index')
-const { Users, sequelize, Sequelize } = require("../models");
+const { users, sequelize, Sequelize } = require("../models");
 
 
 module.exports = () => {
@@ -22,7 +22,7 @@ module.exports = () => {
                 //-------------------------------------------------------------------------------------------
                 try {
                     console.log(profile.id, "1" )
-                    const exUser = await Users.findOne({
+                    const exUser = await users.findOne({
                         // 카카오 플랫폼에서 로그인 했고 & snsId필드에 카카오 아이디가 일치할경우
                         where: {snsId: profile.id},
                         
@@ -35,7 +35,7 @@ module.exports = () => {
                    } else {
                         // 가입되지 않는 유저면 회원가입 시키고 로그인을 시킨다
                         console.log("4 유저 정보 저장")
-                        const newUser = await Users.create({
+                        const newUser = await users.create({
                             snsId: profile.id,
                             provider: 'kakao',
                             nickname : profile._json.properties.nickname,
