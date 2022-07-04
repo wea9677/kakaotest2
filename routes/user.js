@@ -1,6 +1,6 @@
 require('dotenv').config()
 const express = require('express');
-const { Users } = require('../models/index');
+const { users } = require('../models/index');
 const router = express.Router()
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
@@ -16,11 +16,11 @@ const kakaoCallback = (req, res, next) => {
     passport.authenticate(
         'kakao',
         { failureRedirect: '/' },
-        (err, user, info) => {
+        (err, users, info) => {
             if (err) return next(err)
             //----------------------------------------------------------------
             console.log('콜백')
-            const { userId, nickname, userImage } = user;
+            const { userId, nickname, userImage } = users;
             const token = jwt.sign({ userId }, process.env.MY_KEY)
 
             result = {
@@ -29,7 +29,7 @@ const kakaoCallback = (req, res, next) => {
                 userImage
             }
             console.log('카카오 콜백 함수 결과', result)
-            res.send({ user: result })
+            res.send({ users: result })
         }
     )(req, res, next)
 }
@@ -48,7 +48,7 @@ const googleCallback = (req, res, next) => {
         (err, user, info) => {
             if (err) return next(err)
             console.log('콜백')
-            const { userId, nickname, userImage } = user;
+            const { userId, nickname, userImage } = users;
             const token = jwt.sign({ userId }, process.env.MY_KEY)
 
             result = {
@@ -57,7 +57,7 @@ const googleCallback = (req, res, next) => {
                 userImage
             }
             console.log('구글 콜백 함수 결과', result)
-            res.send({ user: result })
+            res.send({ users: result })
         }
     )(req, res, next)
 }
@@ -79,10 +79,10 @@ router.get('/naver/callback', userController.naverCallback)
 router.get("/user/login/me", authMiddleware, async (req, res) => { 
 
     
-    const{ user } =  res.locals;
+    const{ users } =  res.locals;
     
     
-    res.send({ token: user.token, userId: user.userId, nickName : user.nickName, userImg:user.userImg });
+    res.send({ token: users.token, userId: users.userId, nickName : users.nickName, userImg:users.userImg });
     
    });
 

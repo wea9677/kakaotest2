@@ -1,7 +1,7 @@
 const passport = require('passport');
 const { Strategy: NaverStrategy, Profile: NaverProfile } = require('passport-naver-v2');
  
-const { Users, sequelize, Sequelize } = require("../models");
+const { users, sequelize, Sequelize } = require("../models");
 require('dotenv').config()
  
 module.exports = () => {
@@ -15,7 +15,7 @@ module.exports = () => {
          async (accessToken, refreshToken, profile, done) => {
             console.log('naver profile : ', profile);
             try {
-               const exUser = await Users.findOne({
+               const exUser = await users.findOne({
                //    네이버 플랫폼에서 로그인 했고 & snsId필드에 네이버 아이디가 일치할경우
                    where : {snsId: profile.id}, // where { userId: profile.id, provider: 'naver',}
                 });
@@ -24,7 +24,7 @@ module.exports = () => {
                   done(null, exUser);
                } else {
                   // 가입되지 않는 유저면 회원가입 시키고 로그인을 시킨다
-                  const newUser = await Users.create({
+                  const newUser = await users.create({
                      // email: profile.email,
                      nickname: profile.name,
                      snsId: profile.id,
