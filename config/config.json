@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
+    "username": "jejudo",
     "password": "1q2w3e4r!",
-    "database": "jejudo",
-    "host": "13.125.112.232",
+    "database": "jeju",
+    "host": "3.36.67.39",
     "dialect": "mysql",
     "port":3306
   },
