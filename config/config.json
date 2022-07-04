@@ -3,7 +3,7 @@
     "username": "root",
     "password": "1q2w3e4r!",
     "database": "jejudo",
-    "host": "127.0.0.1",
+    "host": "13.125.112.232",
     "dialect": "mysql",
     "port":3306
   },
