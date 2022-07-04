@@ -20,12 +20,11 @@ const kakaoCallback = (req, res, next) => {
             if (err) return next(err)
             //----------------------------------------------------------------
             console.log('콜백')
-            const { snsId, nickname, userImage } = user;
-            const token = jwt.sign({ snsId }, process.env.MY_KEY)
+            const { userId, nickname, userImage } = user;
+            const token = jwt.sign({ userId }, process.env.MY_KEY)
 
             result = {
                 token,
-                snsId,
                 nickname,
                 userImage
             }
@@ -49,12 +48,11 @@ const googleCallback = (req, res, next) => {
         (err, user, info) => {
             if (err) return next(err)
             console.log('콜백')
-            const { snsId, nickname, userImage } = user
-            const token = jwt.sign({ snsId }, process.env.MY_KEY)
+            const { userId, nickname, userImage } = user;
+            const token = jwt.sign({ userId }, process.env.MY_KEY)
 
             result = {
                 token,
-                snsId,
                 nickname,
                 userImage
             }
