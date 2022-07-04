@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "jejudo",
-    "password": "1q2w3e4r!",
+    "password": "1234",
     "database": "jeju",
     "host": "3.36.67.39",
     "dialect": "mysql",
@@ -15,8 +15,8 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": "1q2w3e4r!",
+    "username": "jejudo",
+    "password": "1234",
     "database": "jejudo",
     "host": "127.0.0.1",
     "dialect": "mysql"
