@@ -1,10 +1,13 @@
-const sequelize = require("sequelize")
+// const Sequelize = require("sequelize")
 
-const db = new sequelize('jejudo', 'root', '1q2w3e4r!', {
-        host : "127.0.0.1",
-        dialect: "mysql"
-});
+// const db = new Sequelize({
+//         host : "127.0.0.1",
+//         user : "root",
+//         password : "1q2w3e4r!",
+//         database : "jejudo",
+//         dialect: "mysql"
+// });
 
-db.sync({});
+// db.sync({});
 
-module.exports = db;
+// module.exports = db;
