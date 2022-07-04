@@ -34,15 +34,15 @@ const app = express()
 
 
 // MySQL
-const db = require("./models");
-db.sequelize
-  .sync()
-  .then(() => {
-    // console.log("MySQL DB 연결 성공");
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+// const db = require("./models");
+// db.sequelize
+//   .sync()
+//   .then(() => {
+//     // console.log("MySQL DB 연결 성공");
+//   })
+//   .catch((error) => {
+//     console.error(error);
+//   });
 
 // const httpsPort = process.env.HTTPS_PORT
 
