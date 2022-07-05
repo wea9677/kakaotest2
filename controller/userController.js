@@ -1,6 +1,6 @@
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
-const { users, sequelize, Sequelize } = require("../models");
+const { users } = require('../models/index');
 require('dotenv').config()
 
 
@@ -16,6 +16,7 @@ const naverCallback = (req, res, next) => {
             const token = jwt.sign({ userId }, process.env.MY_KEY)
 
             result = {
+                userId,
                 token,
                 nickname,
                 userImage
