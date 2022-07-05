@@ -9,7 +9,7 @@ const naverCallback = (req, res, next) => {
     passport.authenticate(
         'naver',
         { failureRedirect: '/' },
-        (err, user, info) => {
+        (err, users, info) => {
             if (err) return next(err)
             console.log('콜백')
             const { userId, nickname, userImage } = users;
