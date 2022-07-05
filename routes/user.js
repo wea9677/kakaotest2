@@ -1,6 +1,6 @@
 require('dotenv').config()
 const express = require('express');
-const { users } = require('../models/index');
+const { users, sequelize, Sequelize } = require("../models");
 const router = express.Router()
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
