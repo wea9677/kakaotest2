@@ -71,11 +71,12 @@ const requestMiddleware = (req, res, next) => {
 app.use(express.json())
 app.use(morgan('dev'));
 app.use(cors());
-// app.use(cors({ // CORS 모듈 실행
-//     origin : "http://localhost:3000",  
-//    // origin : "*", // 출처 허용 옵션 (전부 허용)
-//    credential: 'true' // 사용자 인증이 필요한 리소스(쿠키 ..등) 접근
-// }));
+app.use(cors({ // CORS 모듈 실행
+    origin : "https://choiji.shop/",
+            
+   // origin : "*", // 출처 허용 옵션 (전부 허용)
+   credential: 'true' // 사용자 인증이 필요한 리소스(쿠키 ..등) 접근
+}));
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'))
